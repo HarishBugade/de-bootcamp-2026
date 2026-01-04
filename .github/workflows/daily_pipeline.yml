@@ -35,4 +35,4 @@ jobs:
 
       # 5. Run the Pipeline
       - name: Run ETL Script
-        run: python elt_pipeline.py
+        run: python ELT_pipeline.py

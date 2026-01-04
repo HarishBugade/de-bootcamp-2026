@@ -8,7 +8,7 @@ table_id = f"{dataset_id}.raw_transactions" #Creating a new Table
 
 #---Extracting the Data---#
 print(f"Extracting Data")
-df = pd.read_csv(r"C:\Users\harsh\anaconda3\Lib\site-packages\jupyter_server\services\de_bootcamp\transactions.csv")
+df = pd.read_csv("transactions.csv")
 
 #---Adding an extra column into the file---#
 df['Loaded_on'] = str(date.today())
