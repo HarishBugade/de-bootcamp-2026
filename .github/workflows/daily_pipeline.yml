@@ -1,0 +1,38 @@
+name: Daily Data Pipeline
+
+# Trigger: Run every day at 8:00 AM UTC
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  # Also allow manual button click for testing
+  workflow_dispatch:
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Login to Google Cloud
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # 3. Install Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 4. Install Libraries
+      - name: Install dependencies
+        run: |
+          pip install pandas pandas-gbq google-cloud-bigquery
+
+      # 5. Run the Pipeline
+      - name: Run ETL Script
+        run: python elt_pipeline.py
