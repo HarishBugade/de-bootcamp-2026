@@ -3,8 +3,11 @@ from datetime import date
 from google.cloud import bigquery
 from psutil import users
 from datetime import date
+import os
 
-#---Cofiguration--#
+current_folder = os.path.dirname(os.path.abspath(__file__))
+
+#---Configuration--#
 project_id = "de-bootcamp-2026-483215"  
 dataset_id = "bootcamp_dataset"
 table_id = f"{dataset_id}.raw_users" #Creating a new Table
