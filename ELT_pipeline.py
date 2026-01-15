@@ -20,7 +20,7 @@ def load_to_bq(csv_name, table_name):
     #---Extracting and loading the Data---#
     print(f"Extracting Data")
     try:
-        df = pd.read_csv("csv_name")
+        df = pd.read_csv(csv_name   )
         print(f"Loaded {csv_name} wit {len(df)} rows")
     except FileNotFoundError:
         print("No csv found")
@@ -38,7 +38,7 @@ def load_to_bq(csv_name, table_name):
 
     #--Uploading--#
     print("Uploading " + table_name)
-    job = client.load_data_from_dataframe(df, target_path, job_config = job_config)
+    job = client.load_table_from_dataframe(df, target_path, job_config = job_config)
     job.result()
 
 
